@@ -2,22 +2,22 @@ package utils
 
 import "fmt"
 
-// errInvalidField represents a validation error
-type errInvalidField struct {
+// ErrInvalidField represents a validation error
+type ErrInvalidField struct {
 	field  string
 	reason string
 }
 
-func (e errInvalidField) Error() string {
+func (e ErrInvalidField) Error() string {
 	return fmt.Sprintf("invalid field %s: %s", e.field, e.reason)
 }
 
 // invalidFieldError creates an errInvalidField for a specific field and reason
-func invalidFieldError(field, reason string) error {
-	return errInvalidField{field, reason}
+func InvalidFieldError(field, reason string) error {
+	return ErrInvalidField{field, reason}
 }
 
 // emptyFieldError creates an errInvalidField for an empty field
-func emptyFieldError(field string) error {
-	return invalidFieldError(field, "must not be empty")
+func EmptyFieldError(field string) error {
+	return InvalidFieldError(field, "must not be empty")
 }
